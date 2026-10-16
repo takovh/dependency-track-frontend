@@ -15,6 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 name: Release CI
+run-name: Release ${{ inputs.release-version || inputs.version-bump-type }} from ${{ github.ref_name }}
 
 on:
   workflow_dispatch:
