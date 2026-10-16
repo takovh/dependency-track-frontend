@@ -231,6 +231,10 @@ $common.resolveSourceVulnInfo = function resolveSourceVulnInfo(
       sourceInfo.name = 'GitHub Advisories';
       sourceInfo.url = 'https://github.com/advisories/' + vulnId;
       break;
+    case 'EUVD':
+      sourceInfo.name = 'European Vulnerability Database';
+      sourceInfo.url = 'https://euvd.enisa.europa.eu/vulnerability/' + vulnId;
+      break;
     case 'OSSINDEX':
       sourceInfo.name = 'OSS Index';
       sourceInfo.url = 'https://ossindex.sonatype.org/vuln/' + vulnId;
@@ -273,6 +277,11 @@ $common.resolveVulnAliases = function resolveVulnAliases(vulnSource, aliases) {
     }
     if (vulnSource !== 'NVD' && alias.cveId) {
       _resolvedAliases.push($common.resolveSourceVulnInfo('NVD', alias.cveId));
+    }
+    if (vulnSource !== 'EUVD' && alias.euvdId) {
+      _resolvedAliases.push(
+        $common.resolveSourceVulnInfo('EUVD', alias.euvdId),
+      );
     }
     if (vulnSource !== 'GITHUB' && alias.ghsaId) {
       _resolvedAliases.push(
